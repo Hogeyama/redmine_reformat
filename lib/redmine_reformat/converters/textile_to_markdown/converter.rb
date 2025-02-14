@@ -11,6 +11,7 @@ module RedmineReformat
 
       class Converter
         def convert(text, ctx = nil)
+          text = text.dup.force_encoding("UTF-8") unless text.encoding == Encoding::UTF_8
           Conversion.new(text, ctx).call
         end
       end
