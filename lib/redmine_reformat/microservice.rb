@@ -75,7 +75,7 @@ module RedmineReformat
         raise HTTPStatus::BadRequest, "Both from_formatting and to_formatting required"
       end
       Microservice.counter += 1
-      ctx = Context.new(p.symbolize_keys)
+      ctx = Context.new(**p.symbolize_keys)
       ctx.id = Microservice.counter if ctx.id.zero?
       converted = convert(text, ctx)
       raise HTTPStatus::NoContent unless converted
